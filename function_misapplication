@@ -1,0 +1,10 @@
+1.	Math.sqrt("number"); // sqrt expects a number, not a string
+2.	Arrays.sort(true); // sort expects an array, not a boolean
+3.	String.concat(204); // concat expects a string, not an integer
+4.	List.add(5, "index"); // add expects an index as an integer, not a string
+5.	System.out.println(5 < 3); // println used with a comparison, not a value
+6.	Character.isDigit("five"); // isDigit expects a char, not a string
+7.	Integer.parseInt(true); // parseInt expects a string, not a boolean
+8.	Double.valueOf("Pi"); // valueOf expects a valid double string, not 'Pi'
+9.	File.delete("file.txt"); // delete expects a File object, not a string
+10.	Thread.sleep("five"); // sleep expects milliseconds as int, not a string

@@ -1,0 +1,17 @@
+using semantics ASTtransformation.Semantics;
+
+language ASTtransform;
+
+@input AST root;
+
+@start transformation := rule_list;
+rule_list := rule | rule rule_list;
+rule := Replace(filter, val) | Remove(root, filter);
+filter := Match(pattern);
+pattern := Kind(ast, k) | Value(ast, v);
+
+ast := AST;
+
+string k;
+string v;
+string val;

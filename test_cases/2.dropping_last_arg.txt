@@ -1,0 +1,28 @@
+---------------
+Test Case #1:
+---------------
+incorrect_code:
+    dfout = df1.append(df2, ignore_index=True) 
+correct_code:
+    dfout = df1.append(df2)
+
+incorrect_AST:
+    Module(body=[Assign(targets=[Name(id='dfout', ctx=Store())], value=Call(func=Attribute(value=Name(id='df1', ctx=Load()), attr='append', ctx=Load()), args=[Name(id='df2', ctx=Load())], keywords=[keyword(arg='ignore_index', value=Constant(value=True))]))], type_ignores=[])
+correct_AST:
+    Module(body=[Assign(targets=[Name(id='dfout', ctx=Store())], value=Call(func=Attribute(value=Name(id='df1', ctx=Load()), attr='append', ctx=Load()), args=[Name(id='df2', ctx=Load())], keywords=[]))], type_ignores=[])
+
+incorrect_ASTtransform:
+    Module(body=[Assign(...)], )
+    Assign(dfout, Module/Assign)
+    Call(df1, Module/Assign/Call)
+    Attribute(append, Module/Assign/Call/Attribute)
+    Name(df2, Module/Assign/Call/Name)
+    keyword(ignore_index, Module/Assign/Call/keyword)
+    Constant(True, Module/Assign/Call/keyword/Constant[0])
+correct_ASTtransform:
+    Module(body=[Assign(...)], )
+    Assign(dfout, Module/Assign)
+    Call(df1, Module/Assign/Call)
+    Attribute(append, Module/Assign/Call/Attribute)
+    Name(df2, Module/Assign/Call/Name)
+    

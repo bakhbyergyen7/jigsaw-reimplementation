@@ -3,14 +3,14 @@
 Test Case #12:
 ---------------
 incorrect_code:
-    out = df[df["column"] == value]
+    out = df[df[\"column\"] == value]
 correct_code:
-    out = df[~(df["column"] == value)]
+    out = df[~(df[\"column\"] == value)]
 
 incorrect_AST:
-    
+    Module(body=[Assign(targets=[Name(id='out', ctx=Store())], value=Subscript(value=Name(id='df', ctx=Load()), slice=Compare(left=Subscript(value=Name(id='df', ctx=Load()), slice=Constant(value='column'), ctx=Load()), ops=[Eq()], comparators=[Name(id='value', ctx=Load())]), ctx=Load()))])
 correct_AST:
-    
+    Module(body=[Assign(targets=[Name(id='out', ctx=Store())], value=Subscript(value=Name(id='df', ctx=Load()), slice=UnaryOp(op=Invert(), operand=Compare(left=Subscript(value=Name(id='df', ctx=Load()), slice=Constant(value='column'), ctx=Load()), ops=[Eq()], comparators=[Name(id='value', ctx=Load())])), ctx=Load()))])
 
 incorrect_ASTtransform:
     

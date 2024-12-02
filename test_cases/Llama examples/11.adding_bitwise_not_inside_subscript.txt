@@ -3,14 +3,14 @@
 Test Case #11:
 ---------------
 incorrect_code:
-    df_out = df[df["column"].isin(values)]
+    df_out = df[df[\"column\"].isin(values)]
 correct_code:
-    df_out = df[~df["column"].isin(values)]
+    df_out = df[~df[\"column\"].isin(values)]
 
 incorrect_AST:
-    
+    Module(body=[Assign(targets=[Name(id='df_out', ctx=Store())], value=Subscript(value=Name(id='df', ctx=Load()), slice=Call(func=Attribute(value=Subscript(value=Name(id='df', ctx=Load()), slice=Constant(value='column'), ctx=Load()), attr='isin', ctx=Load()), args=[Name(id='values', ctx=Load())]), ctx=Load()))])
 correct_AST:
-    
+    Module(body=[Assign(targets=[Name(id='df_out', ctx=Store())], value=Subscript(value=Name(id='df', ctx=Load()), slice=UnaryOp(op=Invert(), operand=Call(func=Attribute(value=Subscript(value=Name(id='df', ctx=Load()), slice=Constant(value='column'), ctx=Load()), attr='isin', ctx=Load()), args=[Name(id='values', ctx=Load())])), ctx=Load()))])
 
 incorrect_ASTtransform:
     

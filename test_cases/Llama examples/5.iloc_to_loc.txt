@@ -2,13 +2,14 @@
 Test Case #5:
 ---------------
 incorrect_code:
-    df_out = df.iloc[:, "Age"]
+    df_out = df.iloc[:, \"Age\"]
 correct_code:
-    df_out = df.loc[:, "Age"]
+    df_out = df.loc[:, \"Age\"]
 
 incorrect_AST:
-    
-
+    Module(body=[Assign(targets=[Name(id='df_out', ctx=Store())], value=Subscript(value=Attribute(value=Name(id='df', ctx=Load()), attr='iloc', ctx=Load()), slice=Tuple(elts=[Slice(), Constant(value='Age')], ctx=Load()), ctx=Load()))])
+correct_AST:
+    Module(body=[Assign(targets=[Name(id='df_out', ctx=Store())], value=Subscript(value=Attribute(value=Name(id='df', ctx=Load()), attr='loc', ctx=Load()), slice=Tuple(elts=[Slice(), Constant(value='Age')], ctx=Load()), ctx=Load()))])
 incorrect_ASTtransform:
     
 correct_ASTtransform:

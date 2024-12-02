@@ -3,14 +3,14 @@
 Test Case #9:
 ---------------
 incorrect_code:
-    df_out = df1.join(df2, lsuffix="_caller", rsuffix="_other", how="inner", on=None, level=None, return_indexers=False)
+    df_out = df1.join(df2, lsuffix='_caller', rsuffix='_other', how='inner', on=None, level=None, return_indexers=False)
 correct_code:
-    df_out = df1.join(df2, lsuffix="_caller", rsuffix="_other", how="inner")
+    df_out = df1.join(df2, lsuffix='_caller', rsuffix='_other', how='inner')
 
 incorrect_AST:
-    
+    Module(body=[Assign(targets=[Name(id='df_out', ctx=Store())], value=Call(func=Attribute(value=Name(id='df1', ctx=Load()), attr='join', ctx=Load()), args=[Name(id='df2', ctx=Load())], keywords=[keyword(arg='lsuffix', value=Constant(value='_caller')), keyword(arg='rsuffix', value=Constant(value='_other')), keyword(arg='how', value=Constant(value='inner')), keyword(arg='on', value=Constant(value=None)), keyword(arg='level', value=Constant(value=None)), keyword(arg='return_indexers', value=Constant(value=False))]))])
 correct_AST:
-    
+    Module(body=[Assign(targets=[Name(id='df_out', ctx=Store())], value=Call(func=Attribute(value=Name(id='df1', ctx=Load()), attr='join', ctx=Load()), args=[Name(id='df2', ctx=Load())], keywords=[keyword(arg='lsuffix', value=Constant(value='_caller')), keyword(arg='rsuffix', value=Constant(value='_other')), keyword(arg='how', value=Constant(value='inner'))]))])
 
 incorrect_ASTtransform:
     

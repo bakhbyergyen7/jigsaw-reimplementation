@@ -8,9 +8,9 @@ correct_code:
     df_out = df1.append(df2)
 
 incorrect_AST:
-    
+    Module(body=[Assign(targets=[Name(id='df_out', ctx=Store())], value=Call(func=Attribute(value=Name(id='df1', ctx=Load()), attr='append', ctx=Load()), args=[Name(id='df2', ctx=Load())], keywords=[keyword(arg='ignore_index', value=Constant(value=False))]))])
 correct_AST:
-    
+    Module(body=[Assign(targets=[Name(id='df_out', ctx=Store())], value=Call(func=Attribute(value=Name(id='df1', ctx=Load()), attr='append', ctx=Load()), args=[Name(id='df2', ctx=Load())]))])
 
 incorrect_ASTtransform:
     

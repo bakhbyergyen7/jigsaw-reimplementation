@@ -1,0 +1,32 @@
+
+---------------
+Test Case #3:
+---------------
+incorrect_code:
+    out = data[data.index.isin(test.index)]
+correct_code:
+    out = data[~data.index.isin(test.index)]
+
+incorrect_AST:
+    Module(body=[Assign(targets=[Name(id='out', ctx=Store())], value=Subscript(value=Name(id='data', ctx=Load()), slice=Call(func=Attribute(value=Attribute(value=Name(id='data', ctx=Load()), attr='index', ctx=Load()), attr='isin', ctx=Load()), args=[Attribute(value=Name(id='test', ctx=Load()), attr='index', ctx=Load())]), ctx=Load()))])
+correct_AST:
+    Module(body=[Assign(targets=[Name(id='out', ctx=Store())], value=Subscript(value=Name(id='data', ctx=Load()), slice=UnaryOp(op=Invert(), operand=Call(func=Attribute(value=Attribute(value=Name(id='data', ctx=Load()), attr='index', ctx=Load()), attr='isin', ctx=Load()), args=[Attribute(value=Name(id='test', ctx=Load()), attr='index', ctx=Load())])), ctx=Load()))])
+
+incorrect_ASTtransform:
+    Module(body=[Assign(...)])
+    Assign(out, Module/Assign)
+    Subscript(data, Module/Assign/Subscript)
+    Attribute(index, Module/Assign/Subscript/Attribute)
+    Call(isin, Module/Assign/Subscript/Call)
+    Attribute(index, Module/Assign/Subscript/Call/Attribute)
+    Name(test, Module/Assign/Subscript/Call/Name)
+    Name(index, Module/Assign/Subscript/Call/Name/Attribute)
+correct_ASTtransform:
+    Module(body=[Assign(...)])
+    Assign(out, Module/Assign)
+    Subscript(data, Module/Assign/Subscript)
+    UnaryOp(~, Module/Assign/Subscript/UnaryOp)
+    Call(isin, Module/Assign/Subscript/UnaryOp/Call)
+    Attribute(index, Module/Assign/Subscript/UnaryOp/Call/Attribute)
+    Name(test, Module/Assign/Subscript/UnaryOp/Call/Name)
+    Name(index, Module/Assign/Subscript/UnaryOp/Call/Name/Attribute)

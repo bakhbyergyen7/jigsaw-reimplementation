@@ -1,0 +1,17 @@
+
+---------------
+Test Case #8:
+---------------
+incorrect_code:
+    df_out = df1.merge(df2, on="id", how="inner", suffixes=("_caller", "_other"), indicator=False)
+correct_code:
+    df_out = df1.merge(df2, on="id", how="inner", suffixes=("_caller", "_other"))
+
+incorrect_AST:
+    
+correct_AST:
+    
+
+incorrect_ASTtransform:
+    
+correct_ASTtransform:

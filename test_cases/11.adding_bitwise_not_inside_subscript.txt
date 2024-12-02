@@ -1,0 +1,17 @@
+
+---------------
+Test Case #11:
+---------------
+incorrect_code:
+    df_out = df[df["column"].isin(values)]
+correct_code:
+    df_out = df[~df["column"].isin(values)]
+
+incorrect_AST:
+    
+correct_AST:
+    
+
+incorrect_ASTtransform:
+    
+correct_ASTtransform:

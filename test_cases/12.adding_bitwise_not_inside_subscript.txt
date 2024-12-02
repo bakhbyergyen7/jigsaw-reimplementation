@@ -1,0 +1,17 @@
+
+---------------
+Test Case #12:
+---------------
+incorrect_code:
+    out = df[df["column"] == value]
+correct_code:
+    out = df[~(df["column"] == value)]
+
+incorrect_AST:
+    
+correct_AST:
+    
+
+incorrect_ASTtransform:
+    
+correct_ASTtransform:

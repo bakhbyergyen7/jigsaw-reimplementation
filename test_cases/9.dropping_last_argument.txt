@@ -1,0 +1,17 @@
+
+---------------
+Test Case #9:
+---------------
+incorrect_code:
+    df_out = df1.join(df2, lsuffix="_caller", rsuffix="_other", how="inner", on=None, level=None, return_indexers=False)
+correct_code:
+    df_out = df1.join(df2, lsuffix="_caller", rsuffix="_other", how="inner")
+
+incorrect_AST:
+    
+correct_AST:
+    
+
+incorrect_ASTtransform:
+    
+correct_ASTtransform:

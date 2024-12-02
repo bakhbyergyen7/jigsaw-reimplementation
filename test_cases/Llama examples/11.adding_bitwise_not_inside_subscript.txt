@@ -13,5 +13,24 @@ correct_AST:
     Module(body=[Assign(targets=[Name(id='df_out', ctx=Store())], value=Subscript(value=Name(id='df', ctx=Load()), slice=UnaryOp(op=Invert(), operand=Call(func=Attribute(value=Subscript(value=Name(id='df', ctx=Load()), slice=Constant(value='column'), ctx=Load()), attr='isin', ctx=Load()), args=[Name(id='values', ctx=Load())])), ctx=Load()))])
 
 incorrect_ASTtransform:
+	Module(body=[Assign(...)], )
+	Assign(df_out, Module/Assign)
+	Subscript(df, Module/Assign/Subscript)
+	Call(column.isin, Module/Assign/Subscript/Call)
+	Attribute(isin, Module/Assign/Subscript/Call/Attribute)
+	Subscript(column, Module/Assign/Subscript/Call/Attribute/Subscript)
+	Name(df, Module/Assign/Subscript/Call/Attribute/Subscript/Name)
+	Constant(column, Module/Assign/Subscript/Call/Attribute/Subscript/Constant)
+	Name(values, Module/Assign/Subscript/Call/Name)
     
 correct_ASTtransform:
+	Module(body=[Assign(...)], )
+	Assign(df_out, Module/Assign)
+	Subscript(df, Module/Assign/Subscript)
+	UnaryOp(Invert, Module/Assign/Subscript/UnaryOp)
+	Call(column.isin, Module/Assign/Subscript/UnaryOp/Call)
+	Attribute(isin, Module/Assign/Subscript/UnaryOp/Call/Attribute)
+	Subscript(column, Module/Assign/Subscript/UnaryOp/Call/Attribute/Subscript)
+	Name(df, Module/Assign/Subscript/UnaryOp/Call/Attribute/Subscript/Name)
+	Constant(column, Module/Assign/Subscript/UnaryOp/Call/Attribute/Subscript/Constant)
+	Name(values, Module/Assign/Subscript/UnaryOp/Call/Name)

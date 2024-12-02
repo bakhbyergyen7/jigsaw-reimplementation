@@ -12,7 +12,19 @@ correct_AST:
     Module(body=[Assign(targets=[Name(id='out', ctx=Store())], value=Subscript(value=Attribute(value=Name(id='df', ctx=Load()), attr='loc', ctx=Load()), slice=Tuple(elts=[Constant(value=0), Constant(value='Name')], ctx=Load()), ctx=Load()))])
 
 incorrect_ASTtransform:
-    
+    Module(body=[Assign(...)], )
+    Assign(out, Module/Assign)
+    Subscript(df, Module/Assign/Subscript)
+    Attribute(iloc, Module/Assign/Subscript/Attribute)
+    Tuple((0, 'Name'), Module/Assign/Subscript/Tuple)
+    Constant(0, Module/Assign/Subscript/Tuple/Constant[0])
+    Constant(Name, Module/Assign/Subscript/Tuple/Constant[1])
 correct_ASTtransform:
-    
+    Module(body=[Assign(...)], )
+    Assign(out, Module/Assign)
+    Subscript(df, Module/Assign/Subscript)
+    Attribute(loc, Module/Assign/Subscript/Attribute)
+    Tuple((0, 'Name'), Module/Assign/Subscript/Tuple)
+    Constant(0, Module/Assign/Subscript/Tuple/Constant[0])
+    Constant(Name, Module/Assign/Subscript/Tuple/Constant[1])
     

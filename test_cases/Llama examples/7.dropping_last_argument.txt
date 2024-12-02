@@ -13,5 +13,18 @@ correct_AST:
     Module(body=[Assign(targets=[Name(id='df_out', ctx=Store())], value=Call(func=Attribute(value=Name(id='df1', ctx=Load()), attr='append', ctx=Load()), args=[Name(id='df2', ctx=Load())]))])
 
 incorrect_ASTtransform:
+	Module(body=[Assign(...)], )
+	Assign(df_out, Module/Assign)
+	Call(df1, Module/Assign/Call)
+	Attribute(append, Module/Assign/Call/Attribute)
+	Name(df2, Module/Assign/Call/Name)
+	keyword(ignore_index, Module/Assign/Call/keyword)
+	Constant(False, Module/Assign/Call/keyword/Constant)
     
 correct_ASTtransform:
+	Module(body=[Assign(...)], )
+	Assign(df_out, Module/Assign)
+	Call(df1, Module/Assign/Call)
+	Attribute(append, Module/Assign/Call/Attribute)
+	Name(df2, Module/Assign/Call/Name)
+

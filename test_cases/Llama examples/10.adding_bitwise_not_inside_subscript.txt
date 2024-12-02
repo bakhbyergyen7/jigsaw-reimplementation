@@ -13,5 +13,24 @@ correct_AST:
     Module(body=[Assign(targets=[Name(id='out', ctx=Store())], value=Subscript(value=Name(id='data', ctx=Load()), slice=UnaryOp(op=Invert(), operand=Call(func=Attribute(value=Attribute(value=Name(id='data', ctx=Load()), attr='index', ctx=Load()), attr='isin', ctx=Load()), args=[Attribute(value=Name(id='test', ctx=Load()), attr='index', ctx=Load())])), ctx=Load()))])
 
 incorrect_ASTtransform:
+	Module(body=[Assign(...)], )
+	Assign(out, Module/Assign)
+	Subscript(data, Module/Assign/Subscript)
+	Call(index.isin, Module/Assign/Subscript/Call)
+	Attribute(isin, Module/Assign/Subscript/Call/Attribute)
+	Attribute(index, Module/Assign/Subscript/Call/Attribute/Attribute)
+	Name(data, Module/Assign/Subscript/Call/Attribute/Attribute/Name)
+	Name(test, Module/Assign/Subscript/Call/Name)
+	Attribute(index, Module/Assign/Subscript/Call/Name/Attribute)
     
 correct_ASTtransform:
+	Module(body=[Assign(...)], )
+	Assign(out, Module/Assign)
+	Subscript(data, Module/Assign/Subscript)
+	UnaryOp(Invert, Module/Assign/Subscript/UnaryOp)
+	Call(index.isin, Module/Assign/Subscript/UnaryOp/Call)
+	Attribute(isin, Module/Assign/Subscript/UnaryOp/Call/Attribute)
+	Attribute(index, Module/Assign/Subscript/UnaryOp/Call/Attribute/Attribute)
+	Name(data, Module/Assign/Subscript/UnaryOp/Call/Attribute/Attribute/Name)
+	Name(test, Module/Assign/Subscript/UnaryOp/Call/Name)
+	Attribute(index, Module/Assign/Subscript/UnaryOp/Call/Name/Attribute)

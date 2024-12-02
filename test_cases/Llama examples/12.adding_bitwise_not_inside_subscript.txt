@@ -13,5 +13,22 @@ correct_AST:
     Module(body=[Assign(targets=[Name(id='out', ctx=Store())], value=Subscript(value=Name(id='df', ctx=Load()), slice=UnaryOp(op=Invert(), operand=Compare(left=Subscript(value=Name(id='df', ctx=Load()), slice=Constant(value='column'), ctx=Load()), ops=[Eq()], comparators=[Name(id='value', ctx=Load())])), ctx=Load()))])
 
 incorrect_ASTtransform:
+	Module(body=[Assign(...)], )
+	Assign(out, Module/Assign)
+	Subscript(df, Module/Assign/Subscript)
+	Compare(==, Module/Assign/Subscript/Compare)
+	Subscript(column, Module/Assign/Subscript/Compare/Subscript)
+	Name(df, Module/Assign/Subscript/Compare/Subscript/Name)
+	Constant(column, Module/Assign/Subscript/Compare/Subscript/Constant)
+	Name(value, Module/Assign/Subscript/Compare/Name)
     
 correct_ASTtransform:
+	Module(body=[Assign(...)], )
+	Assign(out, Module/Assign)
+	Subscript(df, Module/Assign/Subscript)
+	UnaryOp(Invert, Module/Assign/Subscript/UnaryOp)
+	Compare(==, Module/Assign/Subscript/UnaryOp/Compare)
+	Subscript(column, Module/Assign/Subscript/UnaryOp/Compare/Subscript)
+	Name(df, Module/Assign/Subscript/UnaryOp/Compare/Subscript/Name)
+	Constant(column, Module/Assign/Subscript/UnaryOp/Compare/Subscript/Constant)
+	Name(value, Module/Assign/Subscript/UnaryOp/Compare/Name)

@@ -1,0 +1,15 @@
+---------------
+Test Case #6:
+---------------
+incorrect_code:
+    out = df.iloc[1, "City"]
+correct_code:
+    out = df.loc[1, "City"]
+
+incorrect_AST:
+    
+
+incorrect_ASTtransform:
+    
+correct_ASTtransform:
+    

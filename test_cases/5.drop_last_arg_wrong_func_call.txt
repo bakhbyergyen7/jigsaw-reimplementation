@@ -1,0 +1,30 @@
+
+---------------
+Test Case #5:
+---------------
+incorrect_code:
+    sorted_df = df.sort_values(by='A', ignore_index=True)
+correct_code:
+    sorted_df = df.sort_values(by='B')
+
+incorrect_AST:
+    Module(body=[Assign(targets=[Name(id='sorted_df', ctx=Store())], value=Call(func=Attribute(value=Name(id='df', ctx=Load()), attr='sort_values', ctx=Load()), keywords=[keyword(arg='by', value=Constant(value='A')), keyword(arg='ignore_index', value=Constant(value=True))]))])
+correct_AST:
+    Module(body=[Assign(targets=[Name(id='sorted_df', ctx=Store())], value=Call(func=Attribute(value=Name(id='df', ctx=Load()), attr='sort_values', ctx=Load()), keywords=[keyword(arg='by', value=Constant(value='B'))]))])
+
+incorrect_ASTtransform:
+    Module(body=[Assign(...)])
+    Assign(sorted_df, Module/Assign)
+    Call(df, Module/Assign/Call)
+    Attribute(sort_values, Module/Assign/Call/Attribute)
+    keyword(by, Module/Assign/Call/keyword[0])
+    Constant(A, Module/Assign/Call/keyword[0]/Constant)
+    keyword(ignore_index, Module/Assign/Call/keyword[1])
+    Constant(True, Module/Assign/Call/keyword[1]/Constant)
+correct_ASTtransform:
+    Module(body=[Assign(...)])
+    Assign(sorted_df, Module/Assign)
+    Call(df, Module/Assign/Call)
+    Attribute(sort_values, Module/Assign/Call/Attribute)
+    keyword(by, Module/Assign/Call/keyword)
+    Constant(B, Module/Assign/Call/keyword/Constant)
